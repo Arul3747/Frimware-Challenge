@@ -23,9 +23,10 @@ CAN_msg_typedef Can_rx;
 void CAN_write(CAN_msg_typedef *msg);
 bool CAN_read(CAN_msg_typedef *msg); //return true if there is received msg
 uint32_t time_ms;
+
 void Initialization(void)
 {
-     Iref= Vref= Imin = Vfeed = 0 ; //receiving these values from the bms through input can message
+    Iref= Vref= Imin = Vfeed = 0 ; //receiving these values from the bms through input can message
     Enable_command = false;
     State_charger = 0; // initializing it to IDLE state
     Charging_status = 0; // not charging
@@ -105,8 +106,6 @@ void CAN_write_handler(void)
         else if (Enable_command == true && Charging_status == 1)
             CAN_write(0x7012);
     }
-    
-    time_ms = 0; //clearing the clock 
 }
 void CAN_read_handler(void)
 {
